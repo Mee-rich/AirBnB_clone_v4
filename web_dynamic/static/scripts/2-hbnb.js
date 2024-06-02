@@ -30,5 +30,15 @@ $(() => {
 	$(selectors.amenitiesHeader).html(
 		amenitiesChoosen.length > 0 ? htmlContent : '&nbsp;'
 	);
+
+	$.get(`${BASE_URL}/status`, (data, status) => {
+		if ((status === 'success') && (data.status === 'OK')) {
+		  if (!$('div#api_status').hasClass('available')) {
+			$('div#api_status').addClass('available');
+		  }
+		} else {
+		  $('div#api_status').removeClass('available');
+		}
+	  });
 });
 
